@@ -13,36 +13,32 @@
         .palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 280px; margin: 20px auto; }
         .color-btn { height: 45px; border-radius: 12px; cursor: pointer; border: 1px solid rgba(0,0,0,0.15); box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.1s; }
         .color-btn:active { transform: scale(0.95); }
-        .colorable { fill: #ffffff; stroke: #222222; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; cursor: pointer; transition: fill 0.2s ease; }
-        .skin { fill: #ffe0bd; stroke: #222222; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+        .colorable { fill: #ffffff; stroke: #222222; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; cursor: pointer; transition: fill 0.2s ease; }
+        .skin { fill: #ffe0bd; stroke: #222222; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
     </style>
 </head>
 <body>
 
     <div id="canvas-container">
         <svg viewBox="0 0 200 320">
-            <path id="cap" class="colorable" d="M 76,45 C 68,30 80,18 95,28 C 105,15 125,20 124,38 C 138,28 142,45 128,52 C 110,50 90,52 76,45 Z" />
+            <path id="cap" class="colorable" d="M 78,95 C 62,84 66,64 74,68 C 72,48 88,40 90,56 C 98,36 114,34 114,56 C 126,38 138,48 128,66 C 142,66 132,88 122,95 C 108,90 92,90 78,95 Z" />
 
-            <path id="face" class="skin" d="M 76,52 C 68,75 132,75 124,52 C 110,56 90,56 76,52 Z" />
-            <path d="M 91,58 Q 93,56 94,59" fill="none" stroke="#222222" stroke-width="2.5" stroke-linecap="round" />
-            <path d="M 106,58 Q 108,56 109,59" fill="none" stroke="#222222" stroke-width="2.5" stroke-linecap="round" />
-            <path d="M 89,68 C 94,76 106,76 111,68" fill="none" stroke="#222222" stroke-width="2.5" stroke-linecap="round" />
+            <path id="face" class="skin" d="M 78,95 C 72,125 128,125 122,95 C 110,99 90,99 78,95 Z" />
+            <circle cx="93" cy="104" r="2.5" fill="#222222" />
+            <circle cx="107" cy="104" r="2.5" fill="#222222" />
+            <path d="M 90,112 Q 100,122 110,112" fill="none" stroke="#222222" stroke-width="3" stroke-linecap="round" />
 
-            <path id="tie" class="colorable" d="M 96,82 Q 100,80 104,82 L 106,98 L 100,108 L 94,98 Z" />
+            <path id="shirt" class="colorable" d="M 92,121 C 78,116 54,102 44,95 L 36,105 C 48,114 74,130 82,136 L 84,178 L 116,178 L 118,136 C 126,130 152,114 164,105 L 156,95 C 146,102 122,116 108,121 Z" />
 
-            <path id="shirt" class="colorable" d="M 88,84 
-                     C 70,82 52,70 42,54 C 47,48 55,56 68,68 
-                     C 80,80 84,100 84,135 L 116,135 
-                     C 116,100 120,80 132,68 C 145,56 153,48 158,54 
-                     C 148,70 130,82 112,84 Z" />
+            <path id="tie" class="colorable" d="M 96,121 L 104,121 L 108,146 L 100,162 L 92,146 Z" />
 
-            <path id="left-glove" class="colorable" d="M 42,54 C 34,46 44,38 48,46 Z" />
-            <path id="right-glove" class="colorable" d="M 158,54 C 166,46 156,38 152,46 Z" />
+            <path id="left-glove" class="colorable" d="M 44,95 C 38,84 26,94 36,105 Z" />
+            <path id="right-glove" class="colorable" d="M 156,95 C 162,84 174,94 164,105 Z" />
 
-            <path id="pants" class="colorable" d="M 84,135 L 116,135 C 118,175 124,220 124,255 L 105,255 C 103,210 100,180 95,255 L 76,255 C 76,220 82,175 84,135 Z" />
+            <path id="pants" class="colorable" d="M 84,178 L 116,178 L 144,256 L 114,256 L 100,210 L 86,256 L 56,256 Z" />
 
-            <path id="left-shoe" class="colorable" d="M 76,255 C 60,253 54,268 76,268 L 105,268 C 105,255 105,255 105,255 Z" />
-            <path id="right-shoe" class="colorable" d="M 124,255 C 140,253 146,268 124,268 L 95,268 C 95,255 95,255 95,255 Z" />
+            <path id="left-shoe" class="colorable" d="M 56,256 C 36,258 32,276 64,276 L 94,276 C 92,264 86,256 86,256 Z" />
+            <path id="right-shoe" class="colorable" d="M 144,256 C 164,258 168,276 136,276 L 106,276 C 108,264 114,256 114,256 Z" />
         </svg>
     </div>
 
