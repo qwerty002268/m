@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coloring Page</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #f7f9fa; margin: 0; padding: 10px; }
+        h2 { color: #333; margin-bottom: 5px; }
+        #canvas-container { width: 100%; max-width: 320px; margin: 10px auto; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        svg { width: 100%; height: auto; }
+        .palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 320px; margin: 15px auto; }
+        .color-btn { height: 45px; border: 2px solid #ccc; border-radius: 8px; cursor: pointer; transition: transform 0.1s; }
+        .color-btn:active { transform: scale(0.95); }
+        .colorable { fill: #ffffff; stroke: #000000; stroke-width: 2; cursor: pointer; }
+        .skin { fill: #ffdbac; }
+    </style>
+</head>
+<body>
+
+    <h2>Color the Character</h2>
+    <p style="color:#666; font-size:14px; margin:0;">Select a color below, then choose where to paint it!</p>
+
+    <div id="canvas-container">
+        <svg viewBox="0 0 100 160">
+            <path id="cap" class="colorable" d="M30,30 Q50,10 70,30 Q50,25 30,30 Z" />
+            <circle id="face" class="skin" cx="50" cy="42" r="12" stroke="#000" stroke-width="2" />
+            <path id="tie" class="colorable" d="M48,54 L52,54 L54,70 L50,75 L46,70 Z" />
+            <path id="shirt" class="colorable" d="M30,54 L70,54 L65,95 L35,95 Z" />
+            <circle id="left-glove" class="colorable" cx="23" cy="80" r="6" />
+            <circle id="right-glove" class="colorable" cx="77" cy="80" r="6" />
+            <path id="pants" class="colorable" d="M35,95 L65,95 L68,140 L52,140 L50,110 L48,140 L32,140 Z" />
+            <path id="left-shoe" class="colorable" d="M25,140 L35,140 L38,150 L22,150 Z" />
+            <path id="right-shoe" class="colorable" d="M65,140 L75,140 L78,150 L62,150 Z" />
+        </svg>
+    </div>
+
+    <div class="palette">
+        <div class="color-btn" style="background: #8B00FF;" onclick="selectColor('V')"></div>
+        <div class="color-btn" style="background: #0000FF;" onclick="selectColor('B')"></div>
+        <div class="color-btn" style="background: #00FF00;" onclick="selectColor('G')"></div>
+        <div class="color-btn" style="background: #FFFF00;" onclick="selectColor('Y')"></div>
+        <div class="color-btn" style="background: #FFA500;" onclick="selectColor('O')"></div>
+        <div class="color-btn" style="background: #FF0000;" onclick="selectColor('R')"></div>
+    </div>
+
+<script>
+    const firebaseConfig = {
+        databaseURL: "https://magic-color-match-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    let currentColor = "";
+
+    function selectColor(colorCode) {
+        currentColor = colorCode;
+        database.ref('secret/last_tap').set({
+            color: colorCode,
+            timestamp: Date.now()
+        });
+    }
+
+    const colorMap = { 'V': '#8B00FF', 'B': '#0000FF', 'G': '#00FF00', 'Y': '#FFFF00', 'O': '#FFA500', 'R': '#FF0000' };
+    
+    document.querySelectorAll('.colorable').forEach(element => {
+        element.addEventListener('click', function() {
+            if (currentColor !== "") {
+                this.style.fill = colorMap[currentColor];
+            }
+        });
+    });
+</script>
+</body>
+</html>
